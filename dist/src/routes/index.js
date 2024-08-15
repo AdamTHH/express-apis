@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const claude_1 = __importDefault(require("./claude"));
 const router = express_1.default.Router();
-router.use('/claude', claude_1.default);
+router.use('/mobile/claude', claude_1.default);
 router.get('/', (req, res) => {
     res.json({ success: true });
 });

@@ -9,4 +9,7 @@
     "esModuleInterop": true,
     "alwaysStrict": true
   },
+  "include": [
+    "./api/*.ts"
+  ]
 }

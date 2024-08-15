@@ -5,7 +5,7 @@ import Claude from "./claude";
 
 const router: Router = express.Router();
 
-router.use('/claude', Claude);
+router.use('/mobile/claude', Claude);
 
 router.get('/', (req: Request, res: Response) => {
     res.json({success:true});

@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const needle_1 = __importDefault(require("needle"));
+const firebase_1 = require("../firebase");
 const router = (0, express_1.Router)();
-router.post('/', async (req, res) => {
+router.post('/', [firebase_1.appCheckVerification], async (req, res) => {
     try {
         const prompt = req.body.prompt;
         const result = await generateNewWord(prompt);
@@ -16,15 +17,16 @@ router.post('/', async (req, res) => {
         res.status(500).json({ success: false, error: error.message });
     }
 });
-router.get('/', (req, res) => {
-    res.json("post");
+router.get('/', [firebase_1.appCheckVerification], (req, res) => {
+    res.json("you are on mobile");
 });
 async function generateNewWord(prompt) {
     const url = 'https://api.anthropic.com/v1/messages';
     const headers = {
+        'X-Firebase-AppCheck': "anyad",
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01',
     };
     const body = {
         model: 'claude-3-haiku-20240307',

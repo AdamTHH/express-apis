@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon index.ts",
-    "build": "npx tsc --build"
+    "build": "npx tsc --build",
+    "vercel-build":"echo hello"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "firebase-admin": "^12.3.1",
     "needle": "^3.3.1"
   },
   "devDependencies": {
