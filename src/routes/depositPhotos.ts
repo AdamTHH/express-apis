@@ -19,7 +19,7 @@ router.get('/', [secretVerification], (req: Request, res: Response) => {
 });
 
 async function searchImage(prompt: string) {
-    const url = `https://api.depositphotos.com/?dp_command=search&dp_apikey=77d471e7324e7e00260a9d559809555519252ca0&dp_search_query=${prompt}&dp_search_limit=1&dp_search_orientation=square`;
+    const url = `https://api.depositphotos.com/?dp_command=search&dp_apikey=${process.env.DEPOSITPHOTOS_API_KEY}&dp_search_query=${prompt}&dp_search_limit=1&dp_search_orientation=square`;
     const headers = {
         'Cookie': 'browserSessionId=14ea807a7f73ce0485f617cb13ead1ba151f5aa4ed74383868fc2640b53f51ad'
     };
