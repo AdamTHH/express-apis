@@ -19,15 +19,14 @@ router.get('/', [secretVerification], (req: Request, res: Response) => {
 });
 
 async function searchImage(prompt: string) {
-    const url = `https://api.depositphotos.com/?dp_command=search&dp_apikey=${process.env.DEPOSITPHOTOS_API_KEY}&dp_search_query=${prompt}&dp_search_limit=1&dp_search_orientation=square`;
-    const headers = {
-        'Cookie': 'browserSessionId=14ea807a7f73ce0485f617cb13ead1ba151f5aa4ed74383868fc2640b53f51ad'
-    };
+    const randomOffset = Math.floor(Math.random() * 21);
+    
+    const url = `https://api.depositphotos.com/?dp_command=search&dp_apikey=${process.env.DEPOSITPHOTOS_API_KEY}&dp_search_query=${prompt}&dp_search_limit=1&dp_search_offset=${randomOffset}`;
 
     try {
-        const response = await needle('post', url, {}, { headers: headers });
+        const response = await needle('post', url, {}, { });
         if (response.statusCode === 200) {
-            return response.body['result'][0]['url_max_qa'];
+            return response.body['result'][0]['thumb_max'];
         } else {
             console.error('Error:', response.body);
             throw new Error(`Error: ${JSON.stringify(response.body)}`);
@@ -36,6 +35,5 @@ async function searchImage(prompt: string) {
         console.error('Error:', error);
         throw error;
     }
-};
-
+}
 export default router;
